@@ -1,0 +1,32 @@
+{
+  "name": "@vjeko.com/azure-func-test",
+  "version": "0.0.1",
+  "description": "Testability helpers, mocks, stubs, and all for testing @vjeko.com/azure-func and dependent projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "jest",
+    "Azure Functions"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vjekob/azure-func-test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vjekob/azure-func-test/issues"
+  },
+  "author": "Vjeko.com",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "typescript": "^4.4.3",
+    "ts-node": "^10.2.1",
+    "@jest/types": "^27.2.4",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.10.2",
+    "@azure/functions": "^1.2.3",
+    "azure-storage": "^2.10.4"
+  }
+}
