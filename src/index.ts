@@ -1,6 +1,6 @@
-import * as MockRequest from "./src/MockRequest";
-import * as MockStorage from "./src/MockStorage";
-import * as MockContext from "./src/MockContext";
+import * as MockRequest from "./MockRequest";
+import * as MockStorage from "./MockStorage";
+import * as MockContext from "./MockContext";
 
 export namespace Mock {
 
