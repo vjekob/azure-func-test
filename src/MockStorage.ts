@@ -47,7 +47,7 @@ export class MockStorage {
                     code: "BlobNotFound",
                     statusCode: 404,
                 };
-                setTimeout(() => callback(error, null));
+                setTimeout(() => callback(error, null), Math.random() * 3);
                 return;
             }
 
@@ -58,7 +58,7 @@ export class MockStorage {
                     code: "LeaseAlreadyPresent",
                     statusCode: 409,
                 };
-                setTimeout(() => callback(error, null));
+                setTimeout(() => callback(error, null), Math.random() * 3);
                 return;
             }
 
@@ -73,14 +73,14 @@ export class MockStorage {
                 }
             }, (options && options.leaseDuration || 60) * 1000);
 
-            setTimeout(() => callback(undefined, { id }))
-        });
+            setTimeout(() => callback(undefined, { id }), Math.random() * 3);
+        }, Math.random() * 3);
     }
 
     getBlobProperties(_: string, blob: string, callback: ErrorFirstFunction<any>) {
         setTimeout(() => {
             if (this._content[blob]) {
-                setTimeout(() => callback(undefined, { creationTime: Date.now().toString() }));
+                setTimeout(() => callback(undefined, { creationTime: Date.now().toString() }), Math.random() * 3);
                 return;
             }
             let error: AzureError = {
@@ -89,7 +89,7 @@ export class MockStorage {
                 code: "BlobNotFound",
                 statusCode: 404,
             };
-            setTimeout(() => callback(error, null));
+            setTimeout(() => callback(error, null), Math.random() * 3);
         });
     }
 
@@ -108,22 +108,22 @@ export class MockStorage {
                     statusCode: 404,
                 };
             }
-            setTimeout(() => callback(error, content, { etag }));
-        });
+            setTimeout(() => callback(error, content, { etag }), Math.random() * 3);
+        }, Math.random() * 3);
     }
 
     createBlockBlobFromText(_: string, blob: string, content: any, options: CreateBlobOptions | undefined, callback: ErrorFirstFunction<void>): void {
         setTimeout(() => {
             if (options) {
                 if (this._etags[blob] !== options.accessConditions.EtagMatch) {
-                    setTimeout(() => callback({ statusCode: 412, code: "", name: "StorageError", message: "" }));
+                    setTimeout(() => callback({ statusCode: 412, code: "", name: "StorageError", message: "" }), Math.random() * 3);
                     return;
                 }
             }
             this._content[blob] = JSON.parse(content);
             this.setETag(blob);
-            setTimeout(() => callback(undefined));
-        });
+            setTimeout(() => callback(undefined), Math.random() * 3);
+        }, Math.random() * 3);
     }
 
     deleteBlob(_: string, blob: string, options: any, callback: ErrorFirstFunction<void>) {
@@ -137,7 +137,7 @@ export class MockStorage {
                         code: "LeaseIdMismatchWithBlobOperation",
                         statusCode: 409,
                     };
-                    setTimeout(() => callback(error));
+                    setTimeout(() => callback(error), Math.random() * 3);
                     return;
                 }
                 if (!this._content[blob]) {
@@ -147,7 +147,7 @@ export class MockStorage {
                         code: "BlobNotFound",
                         statusCode: 404,
                     };
-                    setTimeout(() => callback(error));
+                    setTimeout(() => callback(error), Math.random() * 3);
                     return;
                 }
                 delete this._content[blob];
@@ -159,8 +159,8 @@ export class MockStorage {
                     delete this._leased[blob];
                 }
             }
-            setTimeout(() => callback(doDelete ? undefined : new Error("Cannot delete")));
-        });
+            setTimeout(() => callback(doDelete ? undefined : new Error("Cannot delete")), Math.random() * 3);
+        }, Math.random() * 3);
     }
 
     listBlobsSegmented(_: string, token: string | undefined, callback: ErrorFirstFunction<ListResponse>) {
@@ -193,8 +193,8 @@ export class MockStorage {
                 token
             };
 
-            setTimeout(() => callback(undefined, response));
-        });
+            setTimeout(() => callback(undefined, response), Math.random() * 3);
+        }, Math.random() * 3);
     }
 
     releaseLease(_: string, blob: string, leaseId: string, callback: ErrorFirstFunction<any>) {
@@ -206,7 +206,7 @@ export class MockStorage {
                     code: "BlobNotFound",
                     statusCode: 404,
                 };
-                setTimeout(() => callback(error, null));
+                setTimeout(() => callback(error, null), Math.random() * 3);
                 return;
             }
 
@@ -217,14 +217,14 @@ export class MockStorage {
                     code: "LeaseIdMismatchWithBlobOperation",
                     statusCode: 409,
                 };
-                setTimeout(() => callback(error, null));
+                setTimeout(() => callback(error, null), Math.random() * 3);
                 return;
             }
 
             clearTimeout(this._timeouts[blob]);
             delete this._timeouts[blob];
             delete this._leased[blob];
-            setTimeout(() => callback(undefined, undefined))
+            setTimeout(() => callback(undefined, undefined), Math.random() * 3)
         });
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@vjeko.com/azure-func-test",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Testability helpers, mocks, stubs, and all for testing @vjeko.com/azure-func and dependent projects",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
